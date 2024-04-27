@@ -3,7 +3,7 @@ import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 
 // make sure Lexer produces the correct List of Tokens for next step
-class LexerTest: FunSpec({
+class LexerTest : FunSpec({
     test("lexer with element") {
         testHelper("element", listOf(Token(TokenType.ELEMENT, "element")))
     }
@@ -13,20 +13,26 @@ class LexerTest: FunSpec({
     }
 
     test("lexer with unary minus") {
-        testHelper("-42", listOf(
-            Token(TokenType.MINUS, "-"),
-            Token(TokenType.NUMBER, "42")
-        ))
+        testHelper(
+            "-42",
+            listOf(
+                Token(TokenType.MINUS, "-"),
+                Token(TokenType.NUMBER, "42"),
+            ),
+        )
     }
 
     test("lexer with binary expression") {
-        testHelper("(element + 10)", listOf(
-            Token(TokenType.LEFT_PAREN, "("),
-            Token(TokenType.ELEMENT, "element"),
-            Token(TokenType.PLUS, "+"),
-            Token(TokenType.NUMBER, "10"),
-            Token(TokenType.RIGHT_PAREN, ")")
-        ))
+        testHelper(
+            "(element + 10)",
+            listOf(
+                Token(TokenType.LEFT_PAREN, "("),
+                Token(TokenType.ELEMENT, "element"),
+                Token(TokenType.PLUS, "+"),
+                Token(TokenType.NUMBER, "10"),
+                Token(TokenType.RIGHT_PAREN, ")"),
+            ),
+        )
     }
 
     test("lexer but with different whitespaces") {
@@ -40,6 +46,9 @@ class LexerTest: FunSpec({
     }
 })
 
-private fun testHelper(input: String, expectedTokens: List<Token>) {
+private fun testHelper(
+    input: String,
+    expectedTokens: List<Token>,
+) {
     lexer(input) shouldBe expectedTokens
 }

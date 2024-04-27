@@ -5,5 +5,5 @@ enum class TokenType {
     MINUS,
     MULTIPLY,
     LEFT_PAREN,
-    RIGHT_PAREN
+    RIGHT_PAREN,
 }
