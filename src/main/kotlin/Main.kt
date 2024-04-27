@@ -1,5 +1,4 @@
-package org.example
-
 fun main() {
-    println("Hello World!")
+    val input = "(((4 * 7) + 2) - 8)"
+    println("Result: ${ArithmeticParser(input).evaluateExpression()}")
 }
