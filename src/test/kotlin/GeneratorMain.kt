@@ -1,12 +1,11 @@
 import io.kotest.property.Arb
+import io.kotest.property.arbitrary.arbitrary
+import io.kotest.property.arbitrary.choose
 import io.kotest.property.arbitrary.element
 import io.kotest.property.arbitrary.long
 import io.kotest.property.arbitrary.map
 import io.kotest.property.arbitrary.next
 import io.kotest.property.arbitrary.stringPattern
-import io.kotest.property.arbitrary.arbitrary
-import io.kotest.property.arbitrary.choose
-
 
 // used kotest to generate expressions for me, sometimes it stack overflows
 // if I use too many binaryExpressions though, and it's kinda hard to verify the values using tests
@@ -26,7 +25,7 @@ fun main() {
     }
 }
 
-val numberGenerator: Arb<String> = Arb.long(0,300).map { it.toString() }
+val numberGenerator: Arb<String> = Arb.long(0, 300).map { it.toString() }
 
 val signGenerator = Arb.element("", "-")
 val operationGenerator = Arb.element("+", "-", "*")
@@ -48,8 +47,8 @@ val binaryExpressionGenerator: Arb<String> =
     }
 
 val expressionGenerator: Arb<String> =
-        Arb.choose(
-            2 to elementGenerator,
-            40 to constantExpressionGenerator,
-            30 to binaryExpressionGenerator,
-        )
+    Arb.choose(
+        2 to elementGenerator,
+        40 to constantExpressionGenerator,
+        30 to binaryExpressionGenerator,
+    )
