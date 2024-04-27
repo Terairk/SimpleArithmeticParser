@@ -8,7 +8,7 @@ There's an example in MainKt and also GeneratorMain under test/kotlin if you wan
 - **Kotest**: Popular testing framework for Kotlin that supports property testing and DSL's for writing tests.
   - Used for having a custom generator that allows me to generate arbritrary strings that may or may not conform to the grammar for testing purposes.
   - The generator ended up being helpful to generate well-formed long queries rather than doing it manually (and I also got to get more experience with Kotest)
-- **Detekt**: Popular library for static code analysis and code smell. Used 
+- **Detekt**: Popular library for static code analysis and code smell. Used this along with Ktlint to ensure my code didn't 'smell'.
 
 # Setup
 You may need to install the Kotest plugin if you're using IntelliJ IDEA to run the tests from File/IntelliJ (there should be a view for it in IntelliJ)
