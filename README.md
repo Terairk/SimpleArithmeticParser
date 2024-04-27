@@ -3,6 +3,8 @@
 ## Project Description
 This is my submission for the "**Keymap translator**" task for Jetbrains Internship.
 There's an example in MainKt and also GeneratorMain under test/kotlin if you want to use the generator.
+You may need to run GeneratorMain's main functino a few times as it could theoretically stackoverflow when using the generators
+as it might stackoverflow when generating a really long string.
 
 # Tools used
 - **Kotest**: Popular testing framework for Kotlin that supports property testing and DSL's for writing tests.
