@@ -65,8 +65,10 @@ class RecursiveParserTest : FunSpec({
     test("complex expression") {
         with(RecursiveParser()) {
             evaluateInput("(((5 * 8) * -7) + (-8 + 6))") shouldBe -282
-            evaluateInput("(-170 - (293 - ((((-199 - -150) * (269 + -90)) " +
-                    "- ((19 * (-289 + 63)) - (49 + 68))) * (63 + 62))))") shouldBe -545463
+            evaluateInput(
+                "(-170 - (293 - ((((-199 - -150) * (269 + -90)) " +
+                    "- ((19 * (-289 + 63)) - (49 + 68))) * (63 + 62))))",
+            ) shouldBe -545463
         }
     }
 })

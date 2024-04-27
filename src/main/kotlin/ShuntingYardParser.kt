@@ -48,7 +48,8 @@ class ShuntingYardParser : ArithmeticParser {
                     operatorStack.removeLast()
                 }
                 token.isOperator() -> {
-                    val canBeUnaryMinus = previousToken == null ||
+                    val canBeUnaryMinus =
+                        previousToken == null ||
                             previousToken.isOperator() ||
                             previousToken.type == TokenType.LEFT_PAREN
                     if (canBeUnaryMinus && token.type == TokenType.MINUS) {
@@ -89,7 +90,7 @@ class ShuntingYardParser : ArithmeticParser {
     private fun Token.isOperator(): Boolean {
         return when (this.type) {
             TokenType.PLUS, TokenType.MULTIPLY, TokenType.MINUS -> true
-            else                                                -> false
+            else -> false
         }
     }
 }

@@ -15,7 +15,7 @@ class RecursiveParser : ArithmeticParser {
         tokens = lexer(input)
         currentIndex = 0
         val result = parseExpression()
-        require(currentIndex == tokens.size) { "Unexpected token: ${tokens[currentIndex]}"}
+        require(currentIndex == tokens.size) { "Unexpected token: ${tokens[currentIndex]}" }
         return result
     }
 
@@ -88,7 +88,7 @@ class RecursiveParser : ArithmeticParser {
 
     private fun consume(vararg expectedTypes: TokenType): Token {
         val currentToken = tokens[currentIndex]
-        require(currentToken.type in expectedTypes) { "Unexpected token: $currentToken at ${currentToken.location}"}
+        require(currentToken.type in expectedTypes) { "Unexpected token: $currentToken at ${currentToken.location}" }
         currentIndex++
         return currentToken
     }
@@ -97,6 +97,9 @@ class RecursiveParser : ArithmeticParser {
 // models the classes needed for this recursive parser
 
 sealed interface Expression
+
 object ElementExpression : Expression
+
 data class ConstantExpression(val value: Long) : Expression
-data class BinaryExpression(val left: Expression, val operation: TokenType, val right: Expression): Expression
+
+data class BinaryExpression(val left: Expression, val operation: TokenType, val right: Expression) : Expression
