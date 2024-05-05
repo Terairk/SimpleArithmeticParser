@@ -8,7 +8,7 @@ import io.kotest.property.arbitrary.next
 import io.kotest.property.arbitrary.stringPattern
 
 // used kotest to generate expressions for me, sometimes it stack overflows
-// if I use too many binaryExpressions though, and it's kinda hard to verify the values using tests
+// if I weight the binaryExpressions percentages too high, and it's kinda hard to verify the values using tests
 // could be useful in the future though
 fun main() {
     val gen1 = expressionGenerator
@@ -25,6 +25,7 @@ fun main() {
     }
 }
 
+// code for generating Arbitrary Strings
 val numberGenerator: Arb<String> = Arb.long(0, 300).map { it.toString() }
 
 val signGenerator = Arb.element("", "-")
@@ -46,9 +47,10 @@ val binaryExpressionGenerator: Arb<String> =
         "($left $operation $right)"
     }
 
+// default weightings are in GeneratorWeightingsKt
 val expressionGenerator: Arb<String> =
     Arb.choose(
-        2 to elementGenerator,
-        40 to constantExpressionGenerator,
-        30 to binaryExpressionGenerator,
+        ELEMENT_GEN_WEIGHT to elementGenerator,
+        CONSTANT_GEN_WEIGHT to constantExpressionGenerator,
+        BINARY_GEN_WEIGHT to binaryExpressionGenerator,
     )

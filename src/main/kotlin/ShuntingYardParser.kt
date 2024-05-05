@@ -25,7 +25,7 @@ class ShuntingYardParser : ArithmeticParser {
         return stack.removeLast()
     }
 
-    // converts tokens into RPN
+    // converts input string to a Stack of tokens, so it can be evaluated
     private fun shuntingYard(input: String): ArrayDeque<Token> {
         val tokens: List<Token> = lexer(input)
         val outputQueue = ArrayDeque<Token>()
@@ -67,6 +67,7 @@ class ShuntingYardParser : ArithmeticParser {
             index++
         }
 
+        // adds any remaining operators
         while (operatorStack.isNotEmpty()) {
             outputQueue.add(operatorStack.removeLast())
         }

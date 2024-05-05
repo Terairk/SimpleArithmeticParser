@@ -1,4 +1,6 @@
 data class Token(val type: TokenType, val value: String, val location: Int = -1) {
+    // had to override equals for data class so that tokens of different location
+    // but of the same type can be considered equal. Need location for error handling.
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other !is Token) return false
@@ -9,13 +11,13 @@ data class Token(val type: TokenType, val value: String, val location: Int = -1)
         return true
     }
 
+    // generic hashCode
     override fun hashCode(): Int {
-        var result = type.hashCode()
-        result = 31 * result + value.hashCode()
-        return result
+        return 31 * type.hashCode() + value.hashCode()
     }
 }
 
+// performs lexical analysis and tokenizes the input
 fun lexer(input: String): List<Token> {
     val tokens = mutableListOf<Token>()
     var i = 0

@@ -10,6 +10,7 @@ class RecursiveParser : ArithmeticParser {
         return evaluateExpression(expression)
     }
 
+    // converts the input String into an AST of type Expression
     fun parseFromString(input: String): Expression {
         // reset things to an "empty" state
         tokens = lexer(input)
@@ -98,7 +99,7 @@ class RecursiveParser : ArithmeticParser {
 
 sealed interface Expression
 
-object ElementExpression : Expression
+data object ElementExpression : Expression
 
 data class ConstantExpression(val value: Long) : Expression
 
